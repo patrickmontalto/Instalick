@@ -12,8 +12,10 @@
 		3AB1D6921F05A362002DCD1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB1D6901F05A362002DCD1C /* Main.storyboard */; };
 		3AB1D6941F05A362002DCD1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB1D6931F05A362002DCD1C /* Assets.xcassets */; };
 		3AB1D6971F05A362002DCD1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB1D6951F05A362002DCD1C /* LaunchScreen.storyboard */; };
-		3AB1D6A21F05A362002DCD1C /* InstalickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6A11F05A362002DCD1C /* InstalickTests.swift */; };
 		3AB1D6AD1F05A363002DCD1C /* InstalickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6AC1F05A363002DCD1C /* InstalickUITests.swift */; };
+		3AB1D6BB1F05A6A4002DCD1C /* FeedItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */; };
+		3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6BC1F05AA87002DCD1C /* FeedItem.swift */; };
+		3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB1D6C21F05B2FD002DCD1C /* JSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +44,13 @@
 		3AB1D6961F05A362002DCD1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AB1D6981F05A362002DCD1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB1D69D1F05A362002DCD1C /* InstalickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstalickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AB1D6A11F05A362002DCD1C /* InstalickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalickTests.swift; sourceTree = "<group>"; };
 		3AB1D6A31F05A362002DCD1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB1D6A81F05A363002DCD1C /* InstalickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstalickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB1D6AC1F05A363002DCD1C /* InstalickUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalickUITests.swift; sourceTree = "<group>"; };
 		3AB1D6AE1F05A363002DCD1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemTests.swift; sourceTree = "<group>"; };
+		3AB1D6BC1F05AA87002DCD1C /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		3AB1D6C21F05B2FD002DCD1C /* JSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSON.framework; path = Carthage/Build/iOS/JSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +86,7 @@
 				3AB1D6A01F05A362002DCD1C /* InstalickTests */,
 				3AB1D6AB1F05A363002DCD1C /* InstalickUITests */,
 				3AB1D68A1F05A362002DCD1C /* Products */,
+				3AB1D6C11F05B2FC002DCD1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				3AB1D68C1F05A362002DCD1C /* AppDelegate.swift */,
-				3AB1D68E1F05A362002DCD1C /* ViewController.swift */,
+				3AB1D6BE1F05AAE9002DCD1C /* Models */,
+				3AB1D6BF1F05AAF2002DCD1C /* Controllers */,
 				3AB1D6901F05A362002DCD1C /* Main.storyboard */,
 				3AB1D6931F05A362002DCD1C /* Assets.xcassets */,
 				3AB1D6951F05A362002DCD1C /* LaunchScreen.storyboard */,
@@ -110,8 +117,8 @@
 		3AB1D6A01F05A362002DCD1C /* InstalickTests */ = {
 			isa = PBXGroup;
 			children = (
-				3AB1D6A11F05A362002DCD1C /* InstalickTests.swift */,
-				3AB1D6A31F05A362002DCD1C /* Info.plist */,
+				3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */,
+				3AB1D6C01F05AB08002DCD1C /* Resources */,
 			);
 			path = InstalickTests;
 			sourceTree = "<group>";
@@ -125,6 +132,38 @@
 			path = InstalickUITests;
 			sourceTree = "<group>";
 		};
+		3AB1D6BE1F05AAE9002DCD1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1D6BC1F05AA87002DCD1C /* FeedItem.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3AB1D6BF1F05AAF2002DCD1C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1D68E1F05A362002DCD1C /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3AB1D6C01F05AB08002DCD1C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1D6A31F05A362002DCD1C /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3AB1D6C11F05B2FC002DCD1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1D6C21F05B2FD002DCD1C /* JSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +174,7 @@
 				3AB1D6851F05A362002DCD1C /* Sources */,
 				3AB1D6861F05A362002DCD1C /* Frameworks */,
 				3AB1D6871F05A362002DCD1C /* Resources */,
+				3AB1D6C41F05B329002DCD1C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -254,6 +294,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3AB1D6C41F05B329002DCD1C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/JSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3AB1D6851F05A362002DCD1C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -261,6 +318,7 @@
 			files = (
 				3AB1D68F1F05A362002DCD1C /* ViewController.swift in Sources */,
 				3AB1D68D1F05A362002DCD1C /* AppDelegate.swift in Sources */,
+				3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB1D6A21F05A362002DCD1C /* InstalickTests.swift in Sources */,
+				3AB1D6BB1F05A6A4002DCD1C /* FeedItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +470,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Instalick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.Instalick;
@@ -424,6 +486,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Instalick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.Instalick;
