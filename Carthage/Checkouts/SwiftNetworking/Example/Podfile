@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'SwiftNetworking_Tests' do
+  pod 'SwiftNetworking', :path => '../'
+  
+end

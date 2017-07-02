@@ -1,0 +1,17 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode8.3
+language: objective-c
+cache: cocoapods
+podfile: Example/Podfile
+before_install:
+- export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 7 (10.3.1" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
+- echo $IOS_SIMULATOR_UDID
+- open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
+- gem install cocoapods # Since Travis is not always on latest version
+- pod install --project-directory=Example
+script:
+- set -o pipefail && xcodebuild test -workspace Example/SwiftNetworking.xcworkspace -scheme SwiftNetworking-Example -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3.1' -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO 
+- pod lib lint

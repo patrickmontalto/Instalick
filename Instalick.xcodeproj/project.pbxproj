@@ -16,6 +16,7 @@
 		3AB1D6BB1F05A6A4002DCD1C /* FeedItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */; };
 		3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1D6BC1F05AA87002DCD1C /* FeedItem.swift */; };
 		3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB1D6C21F05B2FD002DCD1C /* JSON.framework */; };
+		CD39291A1F086159006850CB /* InstalickIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929191F086159006850CB /* InstalickIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,13 @@
 			remoteInfo = Instalick;
 		};
 		3AB1D6A91F05A363002DCD1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB1D6811F05A362002DCD1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB1D6881F05A362002DCD1C;
+			remoteInfo = Instalick;
+		};
+		CD39291C1F086159006850CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AB1D6811F05A362002DCD1C /* Project object */;
 			proxyType = 1;
@@ -51,6 +59,9 @@
 		3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemTests.swift; sourceTree = "<group>"; };
 		3AB1D6BC1F05AA87002DCD1C /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		3AB1D6C21F05B2FD002DCD1C /* JSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSON.framework; path = Carthage/Build/iOS/JSON.framework; sourceTree = "<group>"; };
+		CD3929171F086159006850CB /* InstalickIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstalickIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3929191F086159006850CB /* InstalickIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalickIntegrationTests.swift; sourceTree = "<group>"; };
+		CD39291B1F086159006850CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +87,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD3929141F086159006850CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,6 +103,7 @@
 				3AB1D68B1F05A362002DCD1C /* Instalick */,
 				3AB1D6A01F05A362002DCD1C /* InstalickTests */,
 				3AB1D6AB1F05A363002DCD1C /* InstalickUITests */,
+				CD3929181F086159006850CB /* InstalickIntegrationTests */,
 				3AB1D68A1F05A362002DCD1C /* Products */,
 				3AB1D6C11F05B2FC002DCD1C /* Frameworks */,
 			);
@@ -96,6 +115,7 @@
 				3AB1D6891F05A362002DCD1C /* Instalick.app */,
 				3AB1D69D1F05A362002DCD1C /* InstalickTests.xctest */,
 				3AB1D6A81F05A363002DCD1C /* InstalickUITests.xctest */,
+				CD3929171F086159006850CB /* InstalickIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +184,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD3929181F086159006850CB /* InstalickIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD3929191F086159006850CB /* InstalickIntegrationTests.swift */,
+				CD39291B1F086159006850CB /* Info.plist */,
+			);
+			path = InstalickIntegrationTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,6 +250,24 @@
 			productReference = 3AB1D6A81F05A363002DCD1C /* InstalickUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CD3929161F086159006850CB /* InstalickIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD39291E1F086159006850CB /* Build configuration list for PBXNativeTarget "InstalickIntegrationTests" */;
+			buildPhases = (
+				CD3929131F086159006850CB /* Sources */,
+				CD3929141F086159006850CB /* Frameworks */,
+				CD3929151F086159006850CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD39291D1F086159006850CB /* PBXTargetDependency */,
+			);
+			name = InstalickIntegrationTests;
+			productName = InstalickIntegrationTests;
+			productReference = CD3929171F086159006850CB /* InstalickIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -245,6 +292,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3AB1D6881F05A362002DCD1C;
 					};
+					CD3929161F086159006850CB = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3AB1D6881F05A362002DCD1C;
+					};
 				};
 			};
 			buildConfigurationList = 3AB1D6841F05A362002DCD1C /* Build configuration list for PBXProject "Instalick" */;
@@ -263,6 +315,7 @@
 				3AB1D6881F05A362002DCD1C /* Instalick */,
 				3AB1D69C1F05A362002DCD1C /* InstalickTests */,
 				3AB1D6A71F05A363002DCD1C /* InstalickUITests */,
+				CD3929161F086159006850CB /* InstalickIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -292,6 +345,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD3929151F086159006850CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -302,6 +362,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/JSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftNetworking.framework",
 			);
 			outputPaths = (
 			);
@@ -338,6 +399,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD3929131F086159006850CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD39291A1F086159006850CB /* InstalickIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -350,6 +419,11 @@
 			isa = PBXTargetDependency;
 			target = 3AB1D6881F05A362002DCD1C /* Instalick */;
 			targetProxy = 3AB1D6A91F05A363002DCD1C /* PBXContainerItemProxy */;
+		};
+		CD39291D1F086159006850CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB1D6881F05A362002DCD1C /* Instalick */;
+			targetProxy = CD39291C1F086159006850CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -552,6 +626,32 @@
 			};
 			name = Release;
 		};
+		CD39291F1F086159006850CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InstalickIntegrationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.InstalickIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Instalick.app/Instalick";
+			};
+			name = Debug;
+		};
+		CD3929201F086159006850CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InstalickIntegrationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.InstalickIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Instalick.app/Instalick";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -571,6 +671,7 @@
 				3AB1D6B31F05A363002DCD1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AB1D6B41F05A363002DCD1C /* Build configuration list for PBXNativeTarget "InstalickTests" */ = {
 			isa = XCConfigurationList;
@@ -579,12 +680,22 @@
 				3AB1D6B61F05A363002DCD1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AB1D6B71F05A363002DCD1C /* Build configuration list for PBXNativeTarget "InstalickUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AB1D6B81F05A363002DCD1C /* Debug */,
 				3AB1D6B91F05A363002DCD1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD39291E1F086159006850CB /* Build configuration list for PBXNativeTarget "InstalickIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD39291F1F086159006850CB /* Debug */,
+				CD3929201F086159006850CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
