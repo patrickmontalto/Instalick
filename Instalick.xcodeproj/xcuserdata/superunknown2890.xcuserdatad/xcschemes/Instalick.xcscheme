@@ -48,6 +48,16 @@
                ReferencedContainer = "container:Instalick.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CD3929161F086159006850CB"
+               BuildableName = "InstalickIntegrationTests.xctest"
+               BlueprintName = "InstalickIntegrationTests"
+               ReferencedContainer = "container:Instalick.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
