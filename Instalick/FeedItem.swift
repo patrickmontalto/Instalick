@@ -48,6 +48,7 @@ struct FeedItem {
     }
 }
 
+// MARK: - JSONDeserializable
 extension FeedItem: JSONDeserializable {
     init(jsonRepresentation json: JSONDictionary) throws {
         albumId = try decode(json, key: Key.albumId)
@@ -57,3 +58,13 @@ extension FeedItem: JSONDeserializable {
         thumbnailUrlString = try decode(json, key: Key.thumbnailUrlString)
     }
 }
+
+// MARK: - Equatable
+func ==(lhs: FeedItem, rhs: FeedItem) -> Bool {
+    return lhs.albumId == rhs.albumId
+        && lhs.id == rhs.id
+        && lhs.photoURL == rhs.photoURL
+        && lhs.thumbnailURL == rhs.thumbnailURL
+        && lhs.title == rhs.title
+}
+

@@ -18,6 +18,14 @@
 		3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB1D6C21F05B2FD002DCD1C /* JSON.framework */; };
 		3ABCDC8B1F087F5A0052798F /* ChildViewControllerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCDC8A1F087F5A0052798F /* ChildViewControllerBehavior.swift */; };
 		CD39291A1F086159006850CB /* InstalickIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929191F086159006850CB /* InstalickIntegrationTests.swift */; };
+		CD3929221F08965D006850CB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929211F08965D006850CB /* APIClient.swift */; };
+		CD3929241F089C1E006850CB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929231F089C1E006850CB /* FeedViewController.swift */; };
+		CD3929261F08A0F8006850CB /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929251F08A0F8006850CB /* FeedItemCell.swift */; };
+		CD3929291F096626006850CB /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3929281F096626006850CB /* FeedItemCell.xib */; };
+		CD39292B1F097C9D006850CB /* Gettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39292A1F097C9D006850CB /* Gettable.swift */; };
+		CD39292D1F09DDE6006850CB /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39292C1F09DDE6006850CB /* FeedViewControllerTests.swift */; };
+		CD39292F1F09E09A006850CB /* SwiftNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39292E1F09E09A006850CB /* SwiftNetworking.framework */; };
+		CD3929301F09E0B8006850CB /* SwiftNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39292E1F09E09A006850CB /* SwiftNetworking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +72,13 @@
 		CD3929171F086159006850CB /* InstalickIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstalickIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD3929191F086159006850CB /* InstalickIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalickIntegrationTests.swift; sourceTree = "<group>"; };
 		CD39291B1F086159006850CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD3929211F08965D006850CB /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		CD3929231F089C1E006850CB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		CD3929251F08A0F8006850CB /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
+		CD3929281F096626006850CB /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
+		CD39292A1F097C9D006850CB /* Gettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gettable.swift; sourceTree = "<group>"; };
+		CD39292C1F09DDE6006850CB /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
+		CD39292E1F09E09A006850CB /* SwiftNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftNetworking.framework; path = Carthage/Build/iOS/SwiftNetworking.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD39292F1F09E09A006850CB /* SwiftNetworking.framework in Frameworks */,
 				3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3929301F09E0B8006850CB /* SwiftNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +144,11 @@
 			children = (
 				3AB1D68C1F05A362002DCD1C /* AppDelegate.swift */,
 				3ABCDC8A1F087F5A0052798F /* ChildViewControllerBehavior.swift */,
+				CD3929211F08965D006850CB /* APIClient.swift */,
+				CD39292A1F097C9D006850CB /* Gettable.swift */,
 				3AB1D6BE1F05AAE9002DCD1C /* Models */,
 				3AB1D6BF1F05AAF2002DCD1C /* Controllers */,
+				CD3929271F08A0FC006850CB /* Views */,
 				3AB1D6901F05A362002DCD1C /* Main.storyboard */,
 				3AB1D6931F05A362002DCD1C /* Assets.xcassets */,
 				3AB1D6951F05A362002DCD1C /* LaunchScreen.storyboard */,
@@ -142,6 +162,7 @@
 			children = (
 				3AB1D6BA1F05A6A4002DCD1C /* FeedItemTests.swift */,
 				3AB1D6C01F05AB08002DCD1C /* Resources */,
+				CD39292C1F09DDE6006850CB /* FeedViewControllerTests.swift */,
 			);
 			path = InstalickTests;
 			sourceTree = "<group>";
@@ -167,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB1D68E1F05A362002DCD1C /* AppViewController.swift */,
+				CD3929231F089C1E006850CB /* FeedViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -182,6 +204,7 @@
 		3AB1D6C11F05B2FC002DCD1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD39292E1F09E09A006850CB /* SwiftNetworking.framework */,
 				3AB1D6C21F05B2FD002DCD1C /* JSON.framework */,
 			);
 			name = Frameworks;
@@ -194,6 +217,15 @@
 				CD39291B1F086159006850CB /* Info.plist */,
 			);
 			path = InstalickIntegrationTests;
+			sourceTree = "<group>";
+		};
+		CD3929271F08A0FC006850CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD3929251F08A0F8006850CB /* FeedItemCell.swift */,
+				CD3929281F096626006850CB /* FeedItemCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3929291F096626006850CB /* FeedItemCell.xib in Resources */,
 				3AB1D6971F05A362002DCD1C /* LaunchScreen.storyboard in Resources */,
 				3AB1D6941F05A362002DCD1C /* Assets.xcassets in Resources */,
 				3AB1D6921F05A362002DCD1C /* Main.storyboard in Resources */,
@@ -381,8 +414,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB1D68F1F05A362002DCD1C /* AppViewController.swift in Sources */,
+				CD39292B1F097C9D006850CB /* Gettable.swift in Sources */,
 				3ABCDC8B1F087F5A0052798F /* ChildViewControllerBehavior.swift in Sources */,
+				CD3929261F08A0F8006850CB /* FeedItemCell.swift in Sources */,
 				3AB1D68D1F05A362002DCD1C /* AppDelegate.swift in Sources */,
+				CD3929221F08965D006850CB /* APIClient.swift in Sources */,
+				CD3929241F089C1E006850CB /* FeedViewController.swift in Sources */,
 				3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD39292D1F09DDE6006850CB /* FeedViewControllerTests.swift in Sources */,
 				3AB1D6BB1F05A6A4002DCD1C /* FeedItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +619,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = InstalickTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.InstalickTests;
@@ -595,6 +637,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = InstalickTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.patrickm.InstalickTests;

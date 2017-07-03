@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftNetworking'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'A micro networking framework for Swift'
 
   s.description      = 'SwiftNetworking provides a thin NetworkClient class that builds and executes URLRequests.'

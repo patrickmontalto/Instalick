@@ -10,11 +10,11 @@ import Foundation
 
 /// Abstract networking client.
 open class NetworkClient {
-    typealias JSONDictionary = [String: Any]
+    public typealias JSONDictionary = [String: Any]
     
     // MARK: - Types
     
-    enum Method: String {
+    public enum Method: String {
         case get = "GET"
         case head = "HEAD"
         case post = "POST"
@@ -35,7 +35,10 @@ open class NetworkClient {
         }
     }
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
+        case missingData
+        case invalidData
+        case invalidJson
         case unknown
     }
     
@@ -60,7 +63,7 @@ open class NetworkClient {
     /// - parameter queryItems: optional array of query items
     /// - parameter parameters: optional JSONDictionary of params
     /// - returns: Expected URLRequest
-    func buildRequest(method: Method = .get, path: String, queryItems: [URLQueryItem] = [], parameters: JSONDictionary? = nil) -> URLRequest {
+    public func buildRequest(method: Method = .get, path: String, queryItems: [URLQueryItem] = [], parameters: JSONDictionary? = nil) -> URLRequest {
         // Create url with path component
         var url = baseURL.appendingPathComponent(path)
         
@@ -98,7 +101,7 @@ open class NetworkClient {
     /// - parameter queryItems: optional array of query items
     /// - parameter parameters: optional JSONDictionary of params
     /// - parameter completion: completion block called containing a Result object
-    func request(method: Method = .get, path: String, queryItems: [URLQueryItem] = [], parameters: JSONDictionary? = nil, completion:  ((NetworkResult) -> Void)? = nil) {
+    public func request(method: Method = .get, path: String, queryItems: [URLQueryItem] = [], parameters: JSONDictionary? = nil, completion:  ((NetworkResult) -> Void)? = nil) {
         // Make request
         let request = buildRequest(method: method, path: path, queryItems: queryItems, parameters: parameters)
         
