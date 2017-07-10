@@ -11,7 +11,7 @@ import UIKit
 /// Displays an individual feed item using it's thumbnail as a preview.
 final class FeedItemCell: UITableViewCell {
     
-    /// Holds the data and logic needed to ppulate a `FeedItemCell`.
+    /// Holds the data and logic needed to populate a `FeedItemCell`.
     struct ViewModel {
         
         /// The title of the feed item.
@@ -19,9 +19,6 @@ final class FeedItemCell: UITableViewCell {
         
         /// The thumbnail image for the feed item.
         var thumbnailImage: UIImage?
-        
-        /// The image for the feed item.
-        var image: UIImage?
     }
     
     static let reuseIdentifier = String(describing: type(of: self))
@@ -32,7 +29,8 @@ final class FeedItemCell: UITableViewCell {
     var viewModel: ViewModel? {
         didSet {
             titleLabel.attributedText = viewModel?.attributedTitleString
-            thumbnailImageView.image = viewModel?.thumbnailImage
+            thumbnailImageView.image = viewModel?.thumbnailImage ?? #imageLiteral(resourceName: "blank_150")
+            viewModel?.thumbnailImage == nil ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         }
     }
     
@@ -48,8 +46,17 @@ final class FeedItemCell: UITableViewCell {
     lazy var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         
         return imageView
+    }()
+    
+    /// The activity indicator used with the placeholder image.
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     // MARK: - Initializers
@@ -66,6 +73,7 @@ final class FeedItemCell: UITableViewCell {
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(thumbnailImageView)
+        contentView.addSubview(activityIndicator)
         
         // Constraints
         NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 16).isActive = true
@@ -75,18 +83,11 @@ final class FeedItemCell: UITableViewCell {
         NSLayoutConstraint(item: thumbnailImageView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: thumbnailImageView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: thumbnailImageView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-    }
+        NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8).isActive = true
+        
+        NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: thumbnailImageView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: thumbnailImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true    }
 }
 
 // MARK: - Feed Item View Model Presentation Logic 
-extension FeedItemCell.ViewModel {
-    
-    /// Attributed string representing the title of the feed item.
-    var attributedTitleString: NSAttributedString {
-        let titleFont = UIFont.preferredFont(forTextStyle: .headline)
-        let titleColor = UIColor.black
-        let attributedString = NSAttributedString(string: title, attributes: [NSFontAttributeName: titleFont, NSForegroundColorAttributeName: titleColor])
-        
-        return attributedString
-    }
-}
+extension FeedItemCell.ViewModel: TitleStringAttributable {}

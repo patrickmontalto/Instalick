@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import SDWebImage
 
+/// The main view controller for the application.
+/// Presents a `UITableView` which displays the contents of a JSON
+/// photos endpoint.
 class FeedViewController: UIViewController {
     
     // MARK: - Properties
+    
     fileprivate(set) var feedItems = [FeedItem]() {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
     
@@ -26,11 +33,17 @@ class FeedViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Feed"
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 150
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Set up view
         setupUI()
@@ -76,16 +89,47 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         // Obtain the feed item for the row.
         let feedItem = feedItems[indexPath.row]
         
+        let thumbnailImage = SDImageCache.shared().imageFromCache(forKey: feedItem.thumbnailUrlString)
+        
         // Set the view model on the cell with the feed item.
         cell.viewModel = FeedItemCell.ViewModel(title: feedItem.title,
-                                                thumbnailImage: nil,
-                                                image: nil)
+                                                thumbnailImage: thumbnailImage)
+        
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Present a detail view for the feed item.
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let feedItem = feedItems[indexPath.row]
+        guard let thumbnailURL = feedItem.thumbnailURL else { return }
+        
+        guard let cell = cell as? FeedItemCell, cell.viewModel?.thumbnailImage == nil else {
+            return
+        }
+        
+        SDWebImageManager.shared().loadImage(with: thumbnailURL, options: .progressiveDownload, progress: nil) { (image, data, error, cacheType, finished, imageURL) in
+            cell.viewModel?.thumbnailImage = image
+        }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Obtain the feed item for the row.
+        let feedItem = feedItems[indexPath.row]
+        let photo = SDImageCache.shared().imageFromCache(forKey: feedItem.urlString)
+
+        // Create a feed detail view controller
+        let feedDetailViewController = FeedDetailViewController()
+        feedDetailViewController.viewModel = FeedDetailViewController.ViewModel(title: feedItem.title, photo: photo)
+        
+        // Check if image doesn't exist in the cache
+        if let photoURL = feedItem.photoURL, photo == nil {
+            SDWebImageManager.shared().loadImage(with: photoURL, options: .progressiveDownload, progress: nil, completed: { [weak feedDetailViewController] (image, data, error, cacheType, finished, imageURL) in
+                feedDetailViewController?.viewModel.photo = image
+            })
+        }
+        
+        navigationController?.pushViewController(feedDetailViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

@@ -26,6 +26,10 @@
 		CD39292D1F09DDE6006850CB /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39292C1F09DDE6006850CB /* FeedViewControllerTests.swift */; };
 		CD39292F1F09E09A006850CB /* SwiftNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39292E1F09E09A006850CB /* SwiftNetworking.framework */; };
 		CD3929301F09E0B8006850CB /* SwiftNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39292E1F09E09A006850CB /* SwiftNetworking.framework */; };
+		CD3929321F0AB0FC006850CB /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3929311F0AB0FC006850CB /* SDWebImage.framework */; };
+		CD3929341F0B2E56006850CB /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */; };
+		CDCC1C2C1F12A98F000EEAD8 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */; };
+		CDCC1C301F13F6F8000EEAD8 /* TitleStringAttributable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,10 @@
 		CD39292A1F097C9D006850CB /* Gettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gettable.swift; sourceTree = "<group>"; };
 		CD39292C1F09DDE6006850CB /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
 		CD39292E1F09E09A006850CB /* SwiftNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftNetworking.framework; path = Carthage/Build/iOS/SwiftNetworking.framework; sourceTree = "<group>"; };
+		CD3929311F0AB0FC006850CB /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
+		CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
+		CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleStringAttributable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3929321F0AB0FC006850CB /* SDWebImage.framework in Frameworks */,
 				CD39292F1F09E09A006850CB /* SwiftNetworking.framework in Frameworks */,
 				3AB1D6C31F05B2FD002DCD1C /* JSON.framework in Frameworks */,
 			);
@@ -153,6 +162,8 @@
 				3AB1D6931F05A362002DCD1C /* Assets.xcassets */,
 				3AB1D6951F05A362002DCD1C /* LaunchScreen.storyboard */,
 				3AB1D6981F05A362002DCD1C /* Info.plist */,
+				CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */,
+				CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */,
 			);
 			path = Instalick;
 			sourceTree = "<group>";
@@ -189,6 +200,7 @@
 			children = (
 				3AB1D68E1F05A362002DCD1C /* AppViewController.swift */,
 				CD3929231F089C1E006850CB /* FeedViewController.swift */,
+				CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -204,6 +216,7 @@
 		3AB1D6C11F05B2FC002DCD1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD3929311F0AB0FC006850CB /* SDWebImage.framework */,
 				CD39292E1F09E09A006850CB /* SwiftNetworking.framework */,
 				3AB1D6C21F05B2FD002DCD1C /* JSON.framework */,
 			);
@@ -399,6 +412,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/JSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftNetworking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 			);
 			outputPaths = (
 			);
@@ -420,6 +434,9 @@
 				3AB1D68D1F05A362002DCD1C /* AppDelegate.swift in Sources */,
 				CD3929221F08965D006850CB /* APIClient.swift in Sources */,
 				CD3929241F089C1E006850CB /* FeedViewController.swift in Sources */,
+				CDCC1C2C1F12A98F000EEAD8 /* UIColor+App.swift in Sources */,
+				CD3929341F0B2E56006850CB /* FeedDetailViewController.swift in Sources */,
+				CDCC1C301F13F6F8000EEAD8 /* TitleStringAttributable.swift in Sources */,
 				3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,6 +25,7 @@ final class AppViewController: UIViewController {
         view.addSubview(behavior.view)
         
         
-        behavior.childViewController = FeedViewController()
+        let navigationController = UINavigationController(rootViewController: FeedViewController())
+        behavior.childViewController = navigationController
     }
 }
