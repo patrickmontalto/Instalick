@@ -156,7 +156,7 @@
 				CD3929211F08965D006850CB /* APIClient.swift */,
 				CD39292A1F097C9D006850CB /* Gettable.swift */,
 				3AB1D6BE1F05AAE9002DCD1C /* Models */,
-				3AB1D6BF1F05AAF2002DCD1C /* Controllers */,
+				3AB1D6BF1F05AAF2002DCD1C /* ViewControllers */,
 				CD3929271F08A0FC006850CB /* Views */,
 				3AB1D6901F05A362002DCD1C /* Main.storyboard */,
 				3AB1D6931F05A362002DCD1C /* Assets.xcassets */,
@@ -195,14 +195,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		3AB1D6BF1F05AAF2002DCD1C /* Controllers */ = {
+		3AB1D6BF1F05AAF2002DCD1C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				3AB1D68E1F05A362002DCD1C /* AppViewController.swift */,
 				CD3929231F089C1E006850CB /* FeedViewController.swift */,
 				CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */,
 			);
-			name = Controllers;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3AB1D6C01F05AB08002DCD1C /* Resources */ = {

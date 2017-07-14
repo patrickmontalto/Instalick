@@ -150,6 +150,8 @@ final class FeedDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         dimmingView.removeFromSuperview()
     }
+
+    // MARK: - UI Setup
     
     /// Updates the height constraint of the `photoImageView` and `photoImageBackgroundView`
     /// based on the size of the provided image.
@@ -159,6 +161,57 @@ final class FeedDetailViewController: UIViewController {
         photoImageViewHeightConstraint.constant = photoImageViewHeight
         photoImageBackgroundHeightConstraint.constant = photoImageViewHeight
     }
+    
+    /// Activates constraints for photoImageView.
+    private func activatePhotoImageViewConstraints() {
+        // Photo imageView
+        NSLayoutConstraint(item: photoImageView, attribute: .top, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .top, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: photoImageView, attribute: .leading, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: photoImageView, attribute: .trailing, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+    }
+    
+    /// Setup view hierarchy and constraints.
+    private func setupUI() {
+        view.addSubview(containerScrollView)
+        containerScrollView.addSubview(contentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(photoImageBackgroundView)
+        contentView.addSubview(photoImageView)
+        let window = UIApplication.shared.keyWindow!
+        window.addSubview(dimmingView)
+        
+        // Constraints
+        
+        // Container ScrollView
+        NSLayoutConstraint(item: containerScrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerScrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerScrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: containerScrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        
+        // Content View
+        NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: containerScrollView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: containerScrollView, attribute: .top, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: containerScrollView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: containerScrollView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: containerScrollView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+        
+        // Title label
+        NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 16).isActive = true
+        
+        activatePhotoImageViewConstraints()
+        photoImageViewHeightConstraint.isActive = true
+
+        // Photo image background view
+        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        photoImageBackgroundHeightConstraint.isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+    }
+    
+    // MARK: - Gestures
     
     /// Arranges the `photoImageView` as an immediate subview of the key window.
     private func movePhotoImageViewToFront() {
@@ -206,7 +259,7 @@ final class FeedDetailViewController: UIViewController {
             dimmingView.alpha = 0
         }
     }
-
+    
     /// Pans the gestured view according to the translation delta of the pan gesture.
     @objc private func panImage(_ panGesture: UIPanGestureRecognizer) {
         guard let panableView = panGesture.view else { return }
@@ -270,56 +323,6 @@ final class FeedDetailViewController: UIViewController {
                                               y: (locationInView.y / (view?.bounds.size.height)!))
             view?.center = locationInSuperview
         }
-    }
-    
-    /// Activates constraints for photoImageView.
-    private func activatePhotoImageViewConstraints() {
-        // Photo imageView
-        NSLayoutConstraint(item: photoImageView, attribute: .top, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: photoImageView, attribute: .leading, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: photoImageView, attribute: .trailing, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-    }
-    
-    
-    /// Setup view hierarchy and constraints.
-    private func setupUI() {
-        view.addSubview(containerScrollView)
-        containerScrollView.addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(photoImageBackgroundView)
-        contentView.addSubview(photoImageView)
-        let window = UIApplication.shared.keyWindow!
-        window.addSubview(dimmingView)
-        
-        // Constraints
-        
-        // Container ScrollView
-        NSLayoutConstraint(item: containerScrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: containerScrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: containerScrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: containerScrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
-        
-        // Content View
-        NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: containerScrollView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: containerScrollView, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: containerScrollView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: containerScrollView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .width, relatedBy: .equal, toItem: containerScrollView, attribute: .width, multiplier: 1, constant: 0).isActive = true
-        
-        // Title label
-        NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 16).isActive = true
-        
-        activatePhotoImageViewConstraints()
-        photoImageViewHeightConstraint.isActive = true
-
-        // Photo image background view
-        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: photoImageBackgroundView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-        photoImageBackgroundHeightConstraint.isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: photoImageBackgroundView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
     }
 }
 
