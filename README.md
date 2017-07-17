@@ -9,4 +9,4 @@ Install dependencies via carthage:
 carthage update
 ```
 ## License
-This project is released open source under the MIT License. See [License](https://raw.githubusercontent.com/patrickmontalto/instalick/master/LICENSE) for more details.
+This project is released open source under the MIT License. See [License](https://raw.githubusercontent.com/patrickmontalto/Instalick/master/LICENSE) for more details.
