@@ -28,6 +28,9 @@
 		CD3929301F09E0B8006850CB /* SwiftNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39292E1F09E09A006850CB /* SwiftNetworking.framework */; };
 		CD3929321F0AB0FC006850CB /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3929311F0AB0FC006850CB /* SDWebImage.framework */; };
 		CD3929341F0B2E56006850CB /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */; };
+		CD47F5A51F1BFE1200D21F41 /* UIRefreshControl+Manual.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD47F5A41F1BFE1200D21F41 /* UIRefreshControl+Manual.swift */; };
+		CD47F5A91F1C012C00D21F41 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD47F5A81F1C012C00D21F41 /* UIViewController+Toast.swift */; };
+		CD47F5AB1F1C353B00D21F41 /* ILNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD47F5AA1F1C353B00D21F41 /* ILNavigationController.swift */; };
 		CDCC1C2C1F12A98F000EEAD8 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */; };
 		CDCC1C301F13F6F8000EEAD8 /* TitleStringAttributable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +88,10 @@
 		CD39292E1F09E09A006850CB /* SwiftNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftNetworking.framework; path = Carthage/Build/iOS/SwiftNetworking.framework; sourceTree = "<group>"; };
 		CD3929311F0AB0FC006850CB /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
+		CD47F5A01F1BE46E00D21F41 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		CD47F5A41F1BFE1200D21F41 /* UIRefreshControl+Manual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Manual.swift"; sourceTree = "<group>"; };
+		CD47F5A81F1C012C00D21F41 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
+		CD47F5AA1F1C353B00D21F41 /* ILNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ILNavigationController.swift; sourceTree = "<group>"; };
 		CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleStringAttributable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +162,7 @@
 				3ABCDC8A1F087F5A0052798F /* ChildViewControllerBehavior.swift */,
 				CD3929211F08965D006850CB /* APIClient.swift */,
 				CD39292A1F097C9D006850CB /* Gettable.swift */,
+				CD47F5A21F1BFDF200D21F41 /* Protocols */,
 				3AB1D6BE1F05AAE9002DCD1C /* Models */,
 				3AB1D6BF1F05AAF2002DCD1C /* ViewControllers */,
 				CD3929271F08A0FC006850CB /* Views */,
@@ -162,8 +170,7 @@
 				3AB1D6931F05A362002DCD1C /* Assets.xcassets */,
 				3AB1D6951F05A362002DCD1C /* LaunchScreen.storyboard */,
 				3AB1D6981F05A362002DCD1C /* Info.plist */,
-				CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */,
-				CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */,
+				CD47F5A31F1BFE0200D21F41 /* Extensions */,
 			);
 			path = Instalick;
 			sourceTree = "<group>";
@@ -199,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB1D68E1F05A362002DCD1C /* AppViewController.swift */,
+				CD47F5AA1F1C353B00D21F41 /* ILNavigationController.swift */,
 				CD3929231F089C1E006850CB /* FeedViewController.swift */,
 				CD3929331F0B2E56006850CB /* FeedDetailViewController.swift */,
 			);
@@ -216,6 +224,7 @@
 		3AB1D6C11F05B2FC002DCD1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD47F5A01F1BE46E00D21F41 /* Reachability.framework */,
 				CD3929311F0AB0FC006850CB /* SDWebImage.framework */,
 				CD39292E1F09E09A006850CB /* SwiftNetworking.framework */,
 				3AB1D6C21F05B2FD002DCD1C /* JSON.framework */,
@@ -239,6 +248,24 @@
 				CD3929281F096626006850CB /* FeedItemCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		CD47F5A21F1BFDF200D21F41 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CDCC1C2F1F13F6F8000EEAD8 /* TitleStringAttributable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		CD47F5A31F1BFE0200D21F41 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CDCC1C2B1F12A98F000EEAD8 /* UIColor+App.swift */,
+				CD47F5A41F1BFE1200D21F41 /* UIRefreshControl+Manual.swift */,
+				CD47F5A81F1C012C00D21F41 /* UIViewController+Toast.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,8 +464,11 @@
 				CD3929241F089C1E006850CB /* FeedViewController.swift in Sources */,
 				CDCC1C2C1F12A98F000EEAD8 /* UIColor+App.swift in Sources */,
 				CD3929341F0B2E56006850CB /* FeedDetailViewController.swift in Sources */,
+				CD47F5A91F1C012C00D21F41 /* UIViewController+Toast.swift in Sources */,
+				CD47F5AB1F1C353B00D21F41 /* ILNavigationController.swift in Sources */,
 				CDCC1C301F13F6F8000EEAD8 /* TitleStringAttributable.swift in Sources */,
 				3AB1D6BD1F05AA87002DCD1C /* FeedItem.swift in Sources */,
+				CD47F5A51F1BFE1200D21F41 /* UIRefreshControl+Manual.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

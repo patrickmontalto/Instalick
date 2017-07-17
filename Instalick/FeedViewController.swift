@@ -16,6 +16,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Properties
     
+    /// The `FeedItems` array used as the `tableView` data source.
     fileprivate(set) var feedItems = [FeedItem]() {
         didSet {
             DispatchQueue.main.async { [weak self] in
@@ -24,21 +25,30 @@ class FeedViewController: UIViewController {
         }
     }
     
+    /// The client used to retrieve data from the API.
     var apiClient = APIClient()
 
+    /// The `UITableView` which displays the feed items.
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(FeedItemCell.self, forCellReuseIdentifier: FeedItemCell.reuseIdentifier)
+        tableView.refreshControl = self.refreshControl
         return tableView
     }()
+    
+    /// The refreshControl for the feed tableView.
+    lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
+        return control
+    }()
+    
     
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Feed"
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -48,8 +58,30 @@ class FeedViewController: UIViewController {
         // Set up view
         setupUI()
         
-        // Get Data
-        getFeed(fromClient: apiClient)
+        // Used cached data first
+        feedItems = apiClient.cachedFeedItems() ?? []
+        
+        // Get data if necessary
+        refreshControl.beginRefreshingManually()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if refreshControl.isRefreshing {
+            let offset = self.tableView.contentOffset
+            
+            refreshControl.endRefreshing()
+            refreshControl.beginRefreshing()
+            tableView.contentOffset = offset
+        }
+//        // Show logo
+//        (navigationController as? ILNavigationController)?.logoIsHidden = false
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        // Hide logo
+//        (navigationController as? ILNavigationController)?.logoIsHidden = true
     }
     
     private func setupUI() {
@@ -61,19 +93,30 @@ class FeedViewController: UIViewController {
         NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
     }
-    
 
-    /// Retrieve the feed items from the client
+    /// Retrieve the feed items from the client.
     func getFeed<Client: Gettable> (fromClient client: Client) where Client.Data == FeedItem {
         client.getArray { [weak self] (result) in
             switch result {
             case .success(let feedItems):
                 self?.feedItems = feedItems
             case .failure(let error):
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self?.showToast(message: "Couldn't Refresh Feed")
+                }
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
             }
         }
     }
+    
+    // MARK: - Actions
+    
+    @objc private func refreshControlPulled(_ refreshControl: UIRefreshControl) {
+        getFeed(fromClient: apiClient)
+    }
+    
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource

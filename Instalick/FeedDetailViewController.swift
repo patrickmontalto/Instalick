@@ -129,6 +129,8 @@ final class FeedDetailViewController: UIViewController {
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Hide logo
+        (navigationController as? ILNavigationController)?.logoIsHidden = true
         title = "Post"
         view.backgroundColor = .white
         setupUI()

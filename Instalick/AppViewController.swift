@@ -15,7 +15,7 @@ final class AppViewController: UIViewController {
     private lazy var behavior: ChildViewControllerBehavior = {
         ChildViewControllerBehavior(parentViewController: self)
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +24,11 @@ final class AppViewController: UIViewController {
         behavior.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(behavior.view)
         
+        // Configure Navigation Controller and status bar appearance
+        UIApplication.shared.statusBarStyle = .lightContent
+
+        let navigationController = ILNavigationController(rootViewController: FeedViewController())
         
-        let navigationController = UINavigationController(rootViewController: FeedViewController())
         behavior.childViewController = navigationController
     }
 }

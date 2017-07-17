@@ -9,12 +9,37 @@
 import Foundation
 import SwiftNetworking
 import JSON
+import Reachability
 
 final class APIClient: NetworkClient, Gettable {
     
+    // MARK: - Properties
+    
+    /// The custom `URLCache` used to persist data from the API.
+    private static var urlCache: URLCache = {
+        let cacheSizeMemory = 500*1024*1024
+        let cacheSizeDisk = 500*1024*1024
+        let cache = URLCache(memoryCapacity: cacheSizeMemory, diskCapacity: cacheSizeDisk, diskPath: String(describing: URLCache.self))
+        return cache
+    }()
+    
+    /// The custom `URLSessionConfiguration` which designates caching policy and timeout intervals.
+    private static var urlSessionConfig: URLSessionConfiguration = {
+        let config = URLSessionConfiguration.default
+        config.urlCache = APIClient.urlCache
+        config.requestCachePolicy = .reloadRevalidatingCacheData
+        config.timeoutIntervalForRequest = 10.0
+        config.timeoutIntervalForResource = 60.0
+        return config
+    }()
+
+    
+    // MARK: - Initializer
+    
     convenience init() {
         let url = URL(string: "http://jsonplaceholder.typicode.com/")!
-        self.init(baseURL: url)
+        let session = URLSession(configuration: APIClient.urlSessionConfig)
+        self.init(baseURL: url, session: session)
     }
     
     enum Path {
@@ -23,17 +48,38 @@ final class APIClient: NetworkClient, Gettable {
     
     // MARK: - Feed Items
     
-    /// Get an array of feed items from the API
+    /// Get an array of feed items from the API.
     ///
-    /// - parameter completion: Block called with feed items if they exist
+    /// - parameter completion: Block called with feed items GET request result.
     func getArray(completion: @escaping (Result<[FeedItem]>) -> Void) {
         request(path: Path.photos, completion: completion)
     }
     
+    /// Get a single feed item from the API.
+    ///
+    /// - parameter completion: Block called with feed item GET request result.
     func get(completion: @escaping (Result<FeedItem>) -> Void) {
         // TODO: Implement 
         fatalError("Not implemented")
     }
+    
+    /// Get the cached data for the last feed items if it exists.
+    func cachedFeedItems() -> [FeedItem]? {
+        let request = buildRequest(path: Path.photos)
+        if let cachedResponse = APIClient.urlCache.cachedResponse(for: request) {
+            // Get data as array of JSONDictionary
+            guard let raw = try? JSONSerialization.jsonObject(with: cachedResponse.data, options: []),
+                let jsonArray = raw as? [JSONDictionary] else {
+                    return nil
+            }
+            
+            // Initialize the objects from the json dictionary
+            let objects: [FeedItem] = jsonArray.flatMap() { try? decode($0) }
+            return objects
+        } else { return nil }
+    }
+    
+    // MARK: - Requests
 
     /// Retrieve an array of JSON objects
     private func request<T: JSONDeserializable>(method: NetworkClient.Method = .get, path: String, queryItems: [URLQueryItem] = [], parameters: NetworkClient.JSONDictionary? = nil, completion: @escaping ((Result<[T]>) -> Void)) {
