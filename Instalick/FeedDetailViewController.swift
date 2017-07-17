@@ -79,7 +79,7 @@ final class FeedDetailViewController: UIViewController {
     private lazy var photoImageBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.App.backgroundGray
         return view
     }()
     
@@ -231,7 +231,6 @@ final class FeedDetailViewController: UIViewController {
         activatePhotoImageViewConstraints()
         view.layoutIfNeeded()
         photoImageView.frame = CGRect(x: 0, y: photoImageOrigin!.y, width: width, height: photoImageViewHeightConstraint.constant)
-        print(photoImageView.frame)
     }
     
     /// Animates the `photoImageView` returning to it's default state.

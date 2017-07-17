@@ -34,6 +34,11 @@ class FeedViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(FeedItemCell.self, forCellReuseIdentifier: FeedItemCell.reuseIdentifier)
         tableView.refreshControl = self.refreshControl
+        let backgroundView = EmptyBackgroundView(frame: self.view.frame)
+        backgroundView.iconImage = #imageLiteral(resourceName: "home")
+        backgroundView.titleText = "Home"
+        backgroundView.captionText = "This is where the posts in your feed would go...if you had any!"
+        tableView.backgroundView = backgroundView
         return tableView
     }()
     
@@ -125,6 +130,14 @@ class FeedViewController: UIViewController {
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if feedItems.count == 0 {
+            tableView.separatorStyle = .none
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView?.isHidden = true
+        }
+        
         return feedItems.count
     }
     
@@ -139,9 +152,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         // Set the view model on the cell with the feed item.
         cell.viewModel = FeedItemCell.ViewModel(title: feedItem.title,
                                                 thumbnailImage: thumbnailImage)
-        
-        cell.accessoryType = .disclosureIndicator
-        
+                
         return cell
     }
     

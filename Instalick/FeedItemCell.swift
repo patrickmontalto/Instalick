@@ -38,7 +38,7 @@ final class FeedItemCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.numberOfLines = 0
         return label
     }()
     
@@ -59,6 +59,14 @@ final class FeedItemCell: UITableViewCell {
         return indicator
     }()
     
+    /// The disclosure indicator used for the cell.
+    lazy var disclosureIndicator: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "next"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -74,19 +82,24 @@ final class FeedItemCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(activityIndicator)
+        contentView.addSubview(disclosureIndicator)
         
         // Constraints
         NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 16).isActive = true
         NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 16).isActive = true
         NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 16).isActive = true
-        
-        NSLayoutConstraint(item: thumbnailImageView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+
         NSLayoutConstraint(item: thumbnailImageView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 8).isActive = true
-        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: thumbnailImageView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: thumbnailImageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: thumbnailImageView, attribute: .bottom, multiplier: 1, constant: 8).isActive = true
         
         NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: thumbnailImageView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: thumbnailImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true    }
+        NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: thumbnailImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: disclosureIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: disclosureIndicator, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: disclosureIndicator, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
+    }
 }
 
 // MARK: - Feed Item View Model Presentation Logic 

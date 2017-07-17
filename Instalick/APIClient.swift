@@ -11,6 +11,7 @@ import SwiftNetworking
 import JSON
 import Reachability
 
+/// The concrete implementation of `NetworkClient` which is responsible for retrieving data from the API.
 final class APIClient: NetworkClient, Gettable {
     
     // MARK: - Properties

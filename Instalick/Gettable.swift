@@ -8,6 +8,7 @@
 
 import SwiftNetworking
 
+/// Describes the behavior of an object which retrieves a singular instance of generic type `Data` and a collection of generic type `Data`.
 protocol Gettable {
     associatedtype Data
 
