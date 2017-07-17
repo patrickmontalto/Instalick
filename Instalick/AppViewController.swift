@@ -24,9 +24,6 @@ final class AppViewController: UIViewController {
         behavior.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(behavior.view)
         
-        // Configure Navigation Controller and status bar appearance
-        UIApplication.shared.statusBarStyle = .lightContent
-
         let navigationController = ILNavigationController(rootViewController: FeedViewController())
         
         behavior.childViewController = navigationController

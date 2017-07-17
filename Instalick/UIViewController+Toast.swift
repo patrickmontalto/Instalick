@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     /// Presents a toast message to the user.
-    func showToast(message: String, duration: TimeInterval = 2.0) {
+    func showToast(message: String, duration: TimeInterval = 2.0, completion: ((Bool) -> Void)? = nil) {
         let label = UILabel()
         label.text = message
         label.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -30,6 +30,7 @@ extension UIViewController {
                 label.frame.origin = CGPoint(x: 0, y: label.frame.origin.y - label.frame.height)
             }, completion: { (completed) in
                 label.removeFromSuperview()
+                completion?(completed)
             })
         })
     }

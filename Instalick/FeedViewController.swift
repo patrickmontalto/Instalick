@@ -44,6 +44,8 @@ class FeedViewController: UIViewController {
         return control
     }()
     
+    /// The presentation state of the toast message.
+    var toastDisplayed = false
     
     // MARK: - UIViewController
     
@@ -74,16 +76,9 @@ class FeedViewController: UIViewController {
             refreshControl.beginRefreshing()
             tableView.contentOffset = offset
         }
-//        // Show logo
-//        (navigationController as? ILNavigationController)?.logoIsHidden = false
+    }
 
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        // Hide logo
-//        (navigationController as? ILNavigationController)?.logoIsHidden = true
-    }
-    
+    /// Sets up the constraints and view hierarchy.
     private func setupUI() {
         view.addSubview(tableView)
         
@@ -100,9 +95,12 @@ class FeedViewController: UIViewController {
             switch result {
             case .success(let feedItems):
                 self?.feedItems = feedItems
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
-                    self?.showToast(message: "Couldn't Refresh Feed")
+                    self?.toastDisplayed = true
+                    self?.showToast(message: "Couldn't Refresh Feed", completion: { (completed) in
+                        self?.toastDisplayed = false
+                    })
                 }
             }
             DispatchQueue.main.async {
@@ -114,6 +112,10 @@ class FeedViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func refreshControlPulled(_ refreshControl: UIRefreshControl) {
+        if toastDisplayed {
+            refreshControl.endRefreshing()
+            return
+        }
         getFeed(fromClient: apiClient)
     }
     
